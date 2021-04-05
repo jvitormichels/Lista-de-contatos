@@ -4,6 +4,7 @@
 
 void criarContato(struct contato c1);
 void listarContatos();
+void limparTela();
 
 int main() {
 	char escolha;
@@ -17,7 +18,8 @@ int main() {
 		scanf("%c", &escolha);
 		
 		if (escolha == '1') {
-			system("cls");
+			//system("cls");
+			limparTela();
 			listarContatos();
 			system("pause");
 		}
@@ -81,4 +83,15 @@ void listarContatos() {
     }
     
     fclose(arquivo);
+}
+
+
+void limparTela() {
+	#ifdef __WIN32__
+    	system("cls");
+	#endif
+
+	#ifdef __linux__
+		system("clear");
+	#endif
 }
