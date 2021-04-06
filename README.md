@@ -19,3 +19,9 @@ O funcionamento dá-se através da gravação e leitura de dados em um arquivo d
 ## Tecnologias
 
 * [C](https://github.com/topics/c)
+
+
+## Aprenda mais
+
+* [Structs customizados](http://linguagemc.com.br/struct-em-c/#:~:text=Uma%20struct%20%C3%A9%20uma%20vari%C3%A1vel,vari%C3%A1veis%20normalmente%20de%20tipos%20diferentes.&text=Podemos%20dizer%20que%20as%20structs,em%20outras%20linguagens%20de%20programa%C3%A7%C3%A3o.)
+* [Manipulação de arquivos em C](http://wiki.icmc.usp.br/images/8/82/Manipulacao_arquivos.pdf)
