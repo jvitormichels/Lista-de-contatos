@@ -5,6 +5,10 @@
 void criarContato(struct contato c1);
 void listarContatos();
 
+void limparTela();
+void limparBuffer();
+
+
 int main() {
 	char escolha;
 	
@@ -13,39 +17,45 @@ int main() {
 		printf("1. Listar contatos\n");
 		printf("2. Criar contato\n");
 		printf("3. Sair\n\n");
-		fflush(stdin);
+		limparBuffer();
 		scanf("%c", &escolha);
+		limparTela();
 		
 		if (escolha == '1') {
-			system("cls");
 			listarContatos();
-			system("pause");
+			
+			limparBuffer();
+			printf("Pressione Enter para continuar ");
+			char pause = getchar();
+			limparTela();
 		}
 		else if (escolha == '2') {
-			system("cls");
+			limparTela();
+			
 			printf("Informe os dados do novo contato:\n");
 			struct contato c1;
 			
 			//char nome[50];
 			printf("Nome: ");
-			fflush(stdin);
+			limparBuffer();
 			scanf("%s", &c1.nome);
 			
 			//int telefone;
 			printf("Telefone: ");
-			fflush(stdin);
+			limparBuffer();
 			scanf("%i", &c1.telefone);
 			
 			printf("Email: ");
-			fflush(stdin);
+			limparBuffer();
 			scanf("%s", &c1.email);
 			
 			criarContato(c1);
+			limparTela();
 		}
 		else if (escolha == '3') {
+			limparTela();
 			exit(0);
 		}
-		system("cls");
 	}
 	
 	return 0;
@@ -81,4 +91,26 @@ void listarContatos() {
     }
     
     fclose(arquivo);
+}
+
+
+void limparTela() {
+	#ifdef __WIN32__
+    	system("cls");
+	#endif
+
+	#ifdef __linux__
+		system("clear");
+	#endif
+}
+
+
+void limparBuffer() {
+   #ifdef __WIN32__
+      fflush(stdin);
+   #endif
+
+   #ifdef __linux__
+      __fpurge(stdin);
+   #endif
 }
