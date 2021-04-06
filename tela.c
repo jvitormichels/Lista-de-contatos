@@ -8,6 +8,7 @@ void listarContatos();
 void limparTela();
 void limpar_buffer();
 
+
 int main() {
 	char escolha;
 	
@@ -18,15 +19,19 @@ int main() {
 		printf("3. Sair\n\n");
 		limpar_buffer();
 		scanf("%c", &escolha);
+		limparTela();
 		
 		if (escolha == '1') {
-			//system("cls");
-			limparTela();
 			listarContatos();
-			system("pause");
+			
+			limpar_buffer();
+			printf("Pressione Enter para continuar ")
+			char pause = getchar();
+			limparTela();
 		}
 		else if (escolha == '2') {
 			limparTela();
+			
 			printf("Informe os dados do novo contato:\n");
 			struct contato c1;
 			
@@ -45,11 +50,12 @@ int main() {
 			scanf("%s", &c1.email);
 			
 			criarContato(c1);
+			limparTela();
 		}
 		else if (escolha == '3') {
+			limparTela();
 			exit(0);
 		}
-		limparTela();
 	}
 	
 	return 0;
