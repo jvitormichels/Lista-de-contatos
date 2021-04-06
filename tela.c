@@ -6,7 +6,7 @@ void criarContato(struct contato c1);
 void listarContatos();
 
 void limparTela();
-void limpar_buffer();
+void limparBuffer();
 
 
 int main() {
@@ -17,15 +17,15 @@ int main() {
 		printf("1. Listar contatos\n");
 		printf("2. Criar contato\n");
 		printf("3. Sair\n\n");
-		limpar_buffer();
+		limparBuffer();
 		scanf("%c", &escolha);
 		limparTela();
 		
 		if (escolha == '1') {
 			listarContatos();
 			
-			limpar_buffer();
-			printf("Pressione Enter para continuar ")
+			limparBuffer();
+			printf("Pressione Enter para continuar ");
 			char pause = getchar();
 			limparTela();
 		}
@@ -37,16 +37,16 @@ int main() {
 			
 			//char nome[50];
 			printf("Nome: ");
-			limpar_buffer();
+			limparBuffer();
 			scanf("%s", &c1.nome);
 			
 			//int telefone;
 			printf("Telefone: ");
-			limpar_buffer();
+			limparBuffer();
 			scanf("%i", &c1.telefone);
 			
 			printf("Email: ");
-			limpar_buffer();
+			limparBuffer();
 			scanf("%s", &c1.email);
 			
 			criarContato(c1);
@@ -105,7 +105,7 @@ void limparTela() {
 }
 
 
-void limpar_buffer() {
+void limparBuffer() {
    #ifdef __WIN32__
       fflush(stdin);
    #endif
