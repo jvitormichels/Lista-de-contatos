@@ -107,10 +107,10 @@ void limparTela() {
 
 void limparBuffer() {
    #ifdef __WIN32__
-      fflush(stdin);
+    	fflush(stdin);
    #endif
 
    #ifdef __linux__
-      __fpurge(stdin);
+    	__fpurge(stdin);
    #endif
 }
