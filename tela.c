@@ -66,7 +66,7 @@ void criarContato(struct contato c1) {
 	FILE *arquivo = fopen("contatos.txt","a");
 	
 	if (arquivo != NULL) {
-		int retorno = fprintf(arquivo, "%s %i\n", c1.nome, c1.telefone);
+		int retorno = fprintf(arquivo, "%s %i %s\n", c1.nome, c1.telefone, c1.email);
 		
 		
 		if (retorno == EOF) {
@@ -86,8 +86,8 @@ void listarContatos() {
     struct contato c1;
 
     while(!feof(arquivo)){
-        fscanf(arquivo,"%s %d ", &c1.nome, &c1.telefone);
-        printf("Nome: %s \nTelefone: %d\n\n", c1.nome, c1.telefone);
+        fscanf(arquivo,"%s %d %s ", &c1.nome, &c1.telefone, &c1.email);
+        printf("Nome: %s \nTelefone: %d \nEmail: %s\n\n", c1.nome, c1.telefone, c1.email);
     }
     
     fclose(arquivo);
