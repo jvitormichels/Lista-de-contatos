@@ -47,6 +47,9 @@ int main() {
 			limparBuffer();
 			scanf("%s", &c1.email);
 			
+			// ID do contato
+			//c1.id = getID();
+			
 			criarContato(c1);
 			limparTela();
 		}
