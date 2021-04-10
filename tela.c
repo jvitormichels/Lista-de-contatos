@@ -14,7 +14,8 @@ int main() {
 		printf("--- Agenda de contatos ---\n\n");
 		printf("1. Listar contatos\n");
 		printf("2. Criar contato\n");
-		printf("3. Sair\n\n");
+		printf("3. Deletar contato\n");
+		printf("4. Sair\n\n");
 		limparBuffer();
 		scanf("%c", &escolha);
 		limparTela();
@@ -54,6 +55,12 @@ int main() {
 			limparTela();
 		}
 		else if (escolha == '3') {
+			limparTela();
+			deletarContato();
+			char pause = getchar();
+			limparTela();
+		}
+		else if (escolha == '4') {
 			limparTela();
 			exit(0);
 		}
