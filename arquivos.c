@@ -6,6 +6,7 @@ void criarContato(struct contato c1) {
 	FILE *arquivo = fopen("contatos.txt","a");
 	
 	if (arquivo != NULL) {
+		c1.id = getID();
 		int retorno = fprintf(arquivo, "%i %s %i %s\n", c1.id, c1.nome, c1.telefone, c1.email);
 		
 		
