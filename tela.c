@@ -20,6 +20,7 @@ int main() {
 		scanf("%c", &escolha);
 		limparTela();
 		
+		// -- Listar contatos -- //
 		if (escolha == '1') {
 			listarContatos();
 			
@@ -28,18 +29,18 @@ int main() {
 			char pause = getchar();
 			limparTela();
 		}
+		
+		// -- Criar contato -- //
 		else if (escolha == '2') {
 			limparTela();
 			
 			printf("Informe os dados do novo contato:\n");
 			struct contato c1;
-			
-			//char nome[50];
+
 			printf("Nome: ");
 			limparBuffer();
 			scanf("%s", &c1.nome);
-			
-			//int telefone;
+
 			printf("Telefone: ");
 			limparBuffer();
 			scanf("%i", &c1.telefone);
@@ -48,12 +49,13 @@ int main() {
 			limparBuffer();
 			scanf("%s", &c1.email);
 			
-			// ID do contato
-			//c1.id = getID();
+			int sucesso = criarContato(c1);
+			//sucesso == 1 ? printf("sucesso") : printf("fracasso"); // Validar contato
 			
-			criarContato(c1);
 			limparTela();
 		}
+		
+		// -- Deletar contato -- //
 		else if (escolha == '3') {
 			limparTela();
 			
@@ -63,11 +65,25 @@ int main() {
         	printf("\nInforme o ID do contato que quer excluir: \n");
         	scanf("%i",&id);
         	
-			deletarContato(id);
+        	limparTela();
+        	
+			int sucesso = deletarContato(id);
+			//sucesso == 1 ? printf("sucesso") : printf("fracasso"); // Validar deleção
 			
+			if (sucesso == 1) {
+				printf("Contato deletado com sucesso!\n\n");
+			}
+			else {
+				printf("ID incorreto! Nenhum contato foi excluído.\n\n");
+			}
+			
+			printf("Pressione Enter para continuar ");
+			limparBuffer();
 			char pause = getchar();
 			limparTela();
 		}
+		
+		// -- Sair -- //
 		else if (escolha == '4') {
 			limparTela();
 			exit(0);

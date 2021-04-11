@@ -2,53 +2,66 @@
 #include <stdlib.h>
 #include "contato.h"
 
-void criarContato(struct contato c1) {
+int criarContato(struct contato c1) {
 	FILE *arquivo = fopen("contatos.txt","a");
 	
+	int resultado;
 	if (arquivo != NULL) {
 		c1.id = getID() + 1;
 		int retorno = fprintf(arquivo, "%i %s %i %s\n", c1.id, c1.nome, c1.telefone, c1.email);
-		
-		
+
 		if (retorno == EOF) {
-			printf("Erro na gravação do arquivo.");
+			// Fracasso na gravação
+			resultado = 0;
+		}
+		else {
+			// Sucesso na gravação
+			resultado = 1;
 		}
 		fclose(arquivo);
 		
 	} else {
-		printf("Erro na criação do arquivo.\n");
+		// Fracasso no acesso ao arquivo
+		resultado = 0;
 	}
+	return resultado;
 }
 
 
 void listarContatos() {
 	FILE *arquivo = fopen("contatos.txt","r");
 	
-    struct contato c1;
-
-    while(!feof(arquivo)){
-        fscanf(arquivo,"%i %s %d %s ", &c1.id, &c1.nome, &c1.telefone, &c1.email);
-        printf("ID: %i \nNome: %s \nTelefone: %d \nEmail: %s\n\n", c1.id, c1.nome, c1.telefone, c1.email);
-    }
+	if (arquivo != NULL) {
+		struct contato c1;
+	    while(!feof(arquivo)){
+	        fscanf(arquivo,"%i %s %d %s ", &c1.id, &c1.nome, &c1.telefone, &c1.email);
+	        printf("ID: %i \nNome: %s \nTelefone: %d \nEmail: %s\n\n", c1.id, c1.nome, c1.telefone, c1.email);
+	    }
+	}
+	else {
+		printf("Não existem contatos para listar!\n\n");
+	}
     
     fclose(arquivo);
 }
 
 
-void deletarContato(int id){
+int deletarContato(int id){
 	FILE *arquivo = fopen("contatos.txt","r");
 	
     struct contato c1;
-    
+    int resultado;
     if (arquivo != NULL) {
     	FILE *arquivo_aux = fopen("contatos_aux.txt","a");
     	rewind(arquivo);
         
         while(!feof(arquivo)){
         	fscanf(arquivo,"%i %s %d %s ",&c1.id, &c1.nome, &c1.telefone, &c1.email);
-        	if(c1.id != id){
-         		fprintf(arquivo_aux, "%i %s %i %s \n",c1.id, c1.nome, c1.telefone, c1.email);
+        	if(c1.id == id){
+        		resultado = 1;
+         		continue;
 			}
+			fprintf(arquivo_aux, "%i %s %i %s \n",c1.id, c1.nome, c1.telefone, c1.email);
         }
         
     	fclose(arquivo_aux);
@@ -58,9 +71,10 @@ void deletarContato(int id){
 	}
 	else {
 		fclose(arquivo);
-		printf("------- Agenda de contatos -------\n\n");
-		printf("    Nenhum contato Salvo.\n\n\n");
+		resultado = 0;
 	}
+	
+	return resultado;
 }
 
 
