@@ -42,11 +42,11 @@ void listarContatos() {
 }
 
 
-void deletarContato(int id){
+int deletarContato(int id){
 	FILE *arquivo = fopen("contatos.txt","r");
 	
     struct contato c1;
-    
+    int resultado;
     if (arquivo != NULL) {
     	FILE *arquivo_aux = fopen("contatos_aux.txt","a");
     	rewind(arquivo);
@@ -62,12 +62,14 @@ void deletarContato(int id){
     	fclose(arquivo);
     	remove("contatos.txt");
     	rename("contatos_aux.txt", "contatos.txt");
+    	resultado = 1;
 	}
 	else {
 		fclose(arquivo);
-		printf("------- Agenda de contatos -------\n\n");
-		printf("    Nenhum contato Salvo.\n\n\n");
+		resultado = 0;
 	}
+	
+	return resultado;
 }
 
 
