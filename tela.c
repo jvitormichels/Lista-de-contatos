@@ -56,7 +56,15 @@ int main() {
 		}
 		else if (escolha == '3') {
 			limparTela();
-			deletarContato();
+			
+			listarContatos();
+			
+			int id;
+        	printf("\nInforme o ID do contato que quer excluir: \n");
+        	scanf("%i",&id);
+        	
+			deletarContato(id);
+			
 			char pause = getchar();
 			limparTela();
 		}

@@ -28,32 +28,21 @@ void listarContatos() {
 
     while(!feof(arquivo)){
         fscanf(arquivo,"%i %s %d %s ", &c1.id, &c1.nome, &c1.telefone, &c1.email);
-        printf("Nome: %s \nTelefone: %d \nEmail: %s\n\n", c1.nome, c1.telefone, c1.email);
+        printf("ID: %i \nNome: %s \nTelefone: %d \nEmail: %s\n\n", c1.id, c1.nome, c1.telefone, c1.email);
     }
     
     fclose(arquivo);
 }
 
 
-void deletarContato(){
+void deletarContato(int id){
 	FILE *arquivo = fopen("contatos.txt","r");
-	FILE *arquivo_aux = fopen("contatos_aux.txt","a");
 	
     struct contato c1;
     
     if (arquivo != NULL) {
+    	FILE *arquivo_aux = fopen("contatos_aux.txt","a");
     	rewind(arquivo);
-    	
-		while(!feof(arquivo)){
-	        fscanf(arquivo,"%i %s %d %s ",&c1.id, &c1.nome, &c1.telefone, &c1.email);
-	        printf("ID: %i \nNome: %s \nTelefone: %d \nEmail: %s\n\n", c1.id,c1.nome, c1.telefone, c1.email);
-        }
-        
-        int id;
-        printf("\nInforme o ID do contato que quer excluir: \n");
-        scanf("%i",&id);
-        
-        rewind(arquivo);
         
         while(!feof(arquivo)){
         	fscanf(arquivo,"%i %s %d %s ",&c1.id, &c1.nome, &c1.telefone, &c1.email);
@@ -62,17 +51,16 @@ void deletarContato(){
 			}
         }
         
-        fclose(arquivo_aux);
+    	fclose(arquivo_aux);
     	fclose(arquivo);
-   	 	remove("contatos.txt");
+    	remove("contatos.txt");
     	rename("contatos_aux.txt", "contatos.txt");
 	}
 	else {
+		fclose(arquivo);
 		printf("------- Agenda de contatos -------\n\n");
 		printf("    Nenhum contato Salvo.\n\n\n");
 	}
-	
-    fclose(arquivo);
 }
 
 
