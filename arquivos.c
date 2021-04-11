@@ -31,12 +31,16 @@ int criarContato(struct contato c1) {
 void listarContatos() {
 	FILE *arquivo = fopen("contatos.txt","r");
 	
-    struct contato c1;
-
-    while(!feof(arquivo)){
-        fscanf(arquivo,"%i %s %d %s ", &c1.id, &c1.nome, &c1.telefone, &c1.email);
-        printf("ID: %i \nNome: %s \nTelefone: %d \nEmail: %s\n\n", c1.id, c1.nome, c1.telefone, c1.email);
-    }
+	if (arquivo != NULL) {
+		struct contato c1;
+	    while(!feof(arquivo)){
+	        fscanf(arquivo,"%i %s %d %s ", &c1.id, &c1.nome, &c1.telefone, &c1.email);
+	        printf("ID: %i \nNome: %s \nTelefone: %d \nEmail: %s\n\n", c1.id, c1.nome, c1.telefone, c1.email);
+	    }
+	}
+	else {
+		printf("Não existem contatos para listar!\n\n");
+	}
     
     fclose(arquivo);
 }
