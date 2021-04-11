@@ -53,16 +53,17 @@ int deletarContato(int id){
         
         while(!feof(arquivo)){
         	fscanf(arquivo,"%i %s %d %s ",&c1.id, &c1.nome, &c1.telefone, &c1.email);
-        	if(c1.id != id){
-         		fprintf(arquivo_aux, "%i %s %i %s \n",c1.id, c1.nome, c1.telefone, c1.email);
+        	if(c1.id == id){
+        		resultado = 1;
+         		continue;
 			}
+			fprintf(arquivo_aux, "%i %s %i %s \n",c1.id, c1.nome, c1.telefone, c1.email);
         }
         
     	fclose(arquivo_aux);
     	fclose(arquivo);
     	remove("contatos.txt");
     	rename("contatos_aux.txt", "contatos.txt");
-    	resultado = 1;
 	}
 	else {
 		fclose(arquivo);

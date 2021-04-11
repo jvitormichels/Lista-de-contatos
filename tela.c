@@ -65,9 +65,21 @@ int main() {
         	printf("\nInforme o ID do contato que quer excluir: \n");
         	scanf("%i",&id);
         	
+        	limparTela();
+        	
 			int sucesso = deletarContato(id);
 			//sucesso == 1 ? printf("sucesso") : printf("fracasso"); // Validar deleção
 			
+			if (sucesso == 1) {
+				printf("Contato deletado com sucesso!\n\n");
+			}
+			else {
+				printf("ID incorreto! Nenhum contato foi excluído.\n\n");
+			}
+			
+			printf("Pressione Enter para continuar ");
+			limparBuffer();
+			char pause = getchar();
 			limparTela();
 		}
 		
