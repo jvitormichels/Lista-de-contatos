@@ -6,6 +6,7 @@
 
 void limparTela();
 void limparBuffer();
+void pausa();
 
 int main() {
 	char escolha;
@@ -23,10 +24,9 @@ int main() {
 		// -- Listar contatos -- //
 		if (escolha == '1') {
 			listarContatos();
-			
-			limparBuffer();
+
 			printf("Pressione Enter para continuar ");
-			char pause = getchar();
+			pausa();
 			limparTela();
 		}
 		
@@ -78,8 +78,7 @@ int main() {
 			}
 			
 			printf("Pressione Enter para continuar ");
-			limparBuffer();
-			char pause = getchar();
+			pausa();
 			limparTela();
 		}
 		
@@ -113,4 +112,10 @@ void limparBuffer() {
    #ifdef __linux__
     	__fpurge(stdin);
    #endif
+}
+
+
+void pausa() {
+	limparBuffer();
+	char pausa = getchar();
 }
