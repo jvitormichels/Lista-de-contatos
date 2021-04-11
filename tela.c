@@ -16,7 +16,8 @@ int main() {
 		printf("1. Listar contatos\n");
 		printf("2. Criar contato\n");
 		printf("3. Deletar contato\n");
-		printf("4. Sair\n\n");
+		printf("4. Editar contato\n");
+		printf("5. Sair\n\n");
 		limparBuffer();
 		scanf("%c", &escolha);
 		limparTela();
@@ -84,6 +85,27 @@ int main() {
 		
 		// -- Sair -- //
 		else if (escolha == '4') {
+			listarContatos();
+			printf("\nInforme o ID do contato que quer editar: \n");
+			int id;
+			scanf("%i",&id);
+			limparBuffer();
+        	limparTela();
+        	
+			int sucesso = editarContato(id);
+			
+			if (sucesso == 1) {
+				printf("Contato deletado com sucesso!\n\n");
+			}
+			else {
+				printf("ID incorreto! Nenhum contato foi excluído.\n\n");
+			}
+			
+			printf("Pressione Enter para continuar ");
+			pausa();
+			limparTela();
+		}
+		else if (escolha == '5') {
 			limparTela();
 			exit(0);
 		}
