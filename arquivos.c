@@ -5,24 +5,26 @@
 int criarContato(struct contato c1) {
 	FILE *arquivo = fopen("contatos.txt","a");
 	
+	int resultado;
 	if (arquivo != NULL) {
 		c1.id = getID() + 1;
 		int retorno = fprintf(arquivo, "%i %s %i %s\n", c1.id, c1.nome, c1.telefone, c1.email);
 
 		if (retorno == EOF) {
 			// Fracasso na gravação
-			return 0;
+			resultado = 0;
 		}
 		else {
 			// Sucesso na gravação
-			return 1;
+			resultado = 1;
 		}
 		fclose(arquivo);
 		
 	} else {
 		// Fracasso no acesso ao arquivo
-		return 0;
+		resultado = 0;
 	}
+	return resultado;
 }
 
 
