@@ -83,7 +83,7 @@ int main() {
 			limparTela();
 		}
 		
-		// -- Sair -- //
+		// -- Editar -- //
 		else if (escolha == '4') {
 			listarContatos();
 			printf("\nInforme o ID do contato que quer editar: \n");
@@ -95,10 +95,10 @@ int main() {
 			int sucesso = editarContato(id);
 			
 			if (sucesso == 1) {
-				printf("Contato deletado com sucesso!\n\n");
+				printf("Contato editado com sucesso!\n\n");
 			}
 			else {
-				printf("ID incorreto! Nenhum contato foi excluído.\n\n");
+				printf("ID incorreto! Nenhum contato foi editado.\n\n");
 			}
 			
 			printf("Pressione Enter para continuar ");
